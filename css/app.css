@@ -33,7 +33,7 @@ span.student-name {
   cursor: not-allowed;
 }
 
-.student:last-child button.move-down {
+.student:nth-last-child(2) button.move-down {
   background-color: #ddd;
   color: #eee;
   cursor: not-allowed;

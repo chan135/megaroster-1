@@ -7,6 +7,7 @@ class Megaroster {
     this.max = 0
     this.setupEventListeners()
     this.load()
+    this.f = false
   }
 
   setupEventListeners() {
@@ -118,7 +119,37 @@ class Megaroster {
       .querySelector('button.move-down')
       .addEventListener('click', this.moveDown.bind(this, student))
 
+    li
+      .querySelector('button.edit')
+      .addEventListener('click', this.editName.bind(this, student))
+
   }
+
+  editName(student, ev) {
+    const btn = ev.target
+    const li = btn.closest('.student')
+    const edit = li.firstChild.nextSibling
+    if (this.f == false ) {
+      edit.contentEditable = "true"
+      edit.autofocus = true
+      this.f = true
+    }
+    else {
+      edit.contentEditable = "false"
+      for (let i=0; i < this.students.length; i++) {
+        let currentId = this.students[i].id.toString()
+        if (currentId === li.dataset.id) {
+          this.students[i].name = edit.textContent
+          console.log(this.students[i])  
+        }
+      }
+      this.f = false
+    }
+    this.save()
+    //console.log(edit.autofocus)
+    //console.log(li)
+
+}
 
   moveUp(student, ev) {
     const btn = ev.target
